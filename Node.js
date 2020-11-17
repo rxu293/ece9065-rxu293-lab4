@@ -36,7 +36,7 @@ router.get('/courses', (req,res) =>{
 	let subjects = db.get("courses").map("subject").value();
 	let classNames = db.get("courses").map("className").value();
 	let data = subjects.map(function(e, i){
-		return [e, classNames[i]];
+		return {subject: e, description: classNames[i]};
 	});
     res.send(data);
 });
@@ -46,8 +46,11 @@ router.get('/courses/:subject', (req, res) =>{
     let subjectcode = req.params.subject;
     let courses = [];
     courses = db.get("courses").filter({subject : subjectcode}).map("catalog_nbr").value();
-    if (courses.length > 0)
-        res.send(courses);
+    let data = courses.map(function(e){
+		return {codes: e};
+	});
+    if (data.length > 0)
+        res.send(data);
     else{
     	let msg = {msg: 'the given subject code was not found'}
         res.status(404).send(msg);

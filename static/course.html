@@ -10,45 +10,85 @@
 <body>
 
 <!-- Place your content here -->
-<div>
-	<button id = "get_all_courses_btn">Get all available courses</button>
-</div>
-<div>
-	<input type = "text" id = "subjectInputText" placeholder="input the subject code">
-	<button id = "get_codes_by_subject_btn">Get all codes under this subject</button>
-</div>
-<div>
-	<input type = "text" id = "div_subjectInputText" placeholder="subject code">
-	<input type = "text" id = "div_courseInputText" placeholder="course code">
-	<input type = "text" id = "div_componentInputText" placeholder="component code">
-	<button id = "get_times_by_given_info_btn">Get time entry by given info</button>
-</div>
-<div>
-	<input type = "text" id = "addScheduleInputText" placeholder="input the schedule name">
-	<button id = "add_schedule_btn">Add this schedule</button>
-	<button id = "get_schedule_btn">Get all pairs in this schedule</button>
-	<button id = "delete_schedule_btn">Delete this schedule</button>
-	<button id = "delete_all_schedule_btn">Delete all schedules</button>
-</div>
+<div ng-app = "myApp" ng-controller = "myCon">
+	<div>
+		<button ng-click = "showAllCourses()">Get all available courses</button>
+	</div>
+	<div>
+		<input type = "text" ng-model = "code_subject" placeholder="input the subject code">
+		<button ng-click = "getCodesByGivenSubject()">Get all codes under this subject</button>
+	</div>
+	<div>
+		<input type = "text" ng-model = "time_subject" placeholder="subject code">
+		<input type = "text" ng-model = "time_course" placeholder="course code">
+		<input type = "text" ng-model = "time_component" placeholder="component code">
+		<button ng-click = "getTimeEntry()">Get time entry by given info</button>
+	</div>
+	<div>
+		<input type = "text" ng-model = "inputschedule" placeholder="input the schedule name">
+		<button ng-click = "addSchedule()">Add this schedule</button>
+		<button id = "get_schedule_btn">Get all pairs in this schedule</button>
+		<button id = "delete_schedule_btn">Delete this schedule</button>
+		<button id = "delete_all_schedule_btn">Delete all schedules</button>
+	</div>
 
-<div>
-	<input type = "text" id = "pairScheduleInputText" placeholder="input the schedule name">
-	<input type = "text" id = "pairSubjectInputText" placeholder="input the subject code">
-	<input type = "text" id = "pairCatalogInputText" placeholder="input the course code">
-	<button id = "add_to_list_btn">Add this pairs to list</button>
-	<button id = "add_list_to_schedule_btn">Add this list to schedule</button>
-</div>
-<div>
-	<button id = "get_all_schedules_btn">Get all schedules name and the number of courses in them</button>
-</div>
+	<div>
+		<input type = "text" id = "pairScheduleInputText" placeholder="input the schedule name">
+		<input type = "text" id = "pairSubjectInputText" placeholder="input the subject code">
+		<input type = "text" id = "pairCatalogInputText" placeholder="input the course code">
+		<button id = "add_to_list_btn">Add this pairs to list</button>
+		<button id = "add_list_to_schedule_btn">Add this list to schedule</button>
+	</div>
+	<div>
+		<button id = "get_all_schedules_btn">Get all schedules name and the number of courses in them</button>
+	</div>
 
 
-<table id = "course_table">
-</table>
+
+	<table id = "course_table" ng-show = "curTable == 'allcourses'">
+		<tr>
+			<th> subject</th>
+			<th> Description</th>
+		</tr>
+		<tr ng-repeat = "x in allcourses">
+			<td> {{x.subject}}</td>
+			<td> {{x.description}}</td>
+		</tr>
+	</table>
+
+	<table id = "codes_table" ng-show = "curTable == 'codes_table'">
+		<tr>
+			<th> Codes</th>
+		</tr>
+		<tr ng-repeat = "x in codesbysubject">
+			<td> {{x.codes}}</td>
+		</tr>
+	</table>
+
+	<table id = "time_table" ng-show = "curTable == 'time_table'">
+		<tr>
+			<th>Start_time</th>
+			<th>End_time</th>
+			<th>Days</th>
+			<th>Component</th>
+		</tr>
+		<tr ng-repeat = "x in timetable">
+			<td> {{x.start_time}}</td>
+			<td> {{x.end_time}}</td>
+			<td> {{x.days}}</td>
+			<td> {{x.component}}</td>
+		</tr>
+	</table>
+
+
+</div>
 
 
 <!-- Embedded JavaScript go here -->
+<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 <script src = "course.js"></script>
+
 </body>
 </html>
 

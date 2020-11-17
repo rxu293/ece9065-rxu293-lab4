@@ -1,0 +1,58 @@
+{
+  "sche3": [
+    {
+      "subject": "ACTURSCI",
+      "catalog_nbr": "1036B"
+    },
+    {
+      "subject": "CHINESE",
+      "catalog_nbr": "4539E"
+    },
+    {
+      "subject": "CHINEE",
+      "catalog_nbr": "4539E"
+    },
+    {
+      "subject": "korean",
+      "catalog_nbr": "3214"
+    }
+  ],
+  "sche1": [
+    {
+      "subject": "ACTURSCI",
+      "catalog_nbr": "1036D"
+    },
+    {
+      "subject": "CHINEE",
+      "catalog_nbr": "4539E"
+    },
+    {
+      "subject": "korean",
+      "catalog_nbr": "3214"
+    },
+    {
+      "subject": "COMPUTER",
+      "catalog_nbr": "2341"
+    },
+    {
+      "subject": "ads",
+      "catalog_nbr": "sda"
+    },
+    {
+      "subject": "ads1",
+      "catalog_nbr": "sda2"
+    }
+  ],
+  "课表": [
+    {
+      "subject": "chinese",
+      "catalog_nbr": "2039"
+    },
+    {
+      "subject": "Japanese",
+      "catalog_nbr": "9988"
+    }
+  ],
+  "אגודל": [],
+  "sch1": []
+}

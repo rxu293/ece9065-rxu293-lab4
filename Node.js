@@ -139,12 +139,13 @@ router.post('/schedule/:schedule_name', (req, res) =>{
 			if (sche_db.get(schedulename).find({subject:pairs[i].subject}).value())
 			{
 				sche_db.get(schedulename).find({subject:pairs[i].subject})
-				.assign({catalog_nbr:pairs[i].catalog_nbr}).write();
+				.assign({catalog_nbr:pairs[i].catalog_nbr}).
+				assign({start_time:pairs[i].start_time}).assign({end_time:pairs[i].end_time}).write();
 			}
 			else
 			{
 				sche_db.get(schedulename).
-				push({subject:pairs[i].subject,catalog_nbr:pairs[i].catalog_nbr}).write();
+				push({subject:pairs[i].subject,catalog_nbr:pairs[i].catalog_nbr,start_time:pairs[i].start_time,end_time:pairs[i].end_time}).write();
 			}
 		}
 		let data = sche_db.get(schedulename).value();

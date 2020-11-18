@@ -56,5 +56,18 @@
   "אגודל": [],
   "sch1": [],
   "undefined": [],
-  "sche6": []
+  "sche6": [
+    {
+      "subject": "KOREAN",
+      "catalog_nbr": "2013",
+      "start_time": "10:00",
+      "end_time": "12:00"
+    },
+    {
+      "subject": "JAPANESE",
+      "catalog_nbr": "9182",
+      "start_time": "7:00",
+      "end_time": "12:00"
+    }
+  ]
 }

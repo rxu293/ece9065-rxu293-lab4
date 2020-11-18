@@ -51,13 +51,26 @@ app.controller('myCon', function($scope, $http){
 	}
 
 	$scope.addtoList = function(){
-		pairs.pairs.push({subject: $scope.inputsubject, catalog_nbr:course, 
-			start_time: $scope.start_time, end_time: $scope.end_time});
+		pairs.pairs.push({subject: $scope.pair_subject, catalog_nbr:$scope.pair_course, 
+			start_time: $scope.pair_starttime, end_time: $scope.pair_endtime});
 		alert("added to list successfully");
 	}
 
 	$scope.addtoSchedule = function(){
-
+		let sendData = pairs;
+		$http({
+			method: 'POST',
+			data: sendData,
+			url: publicURL + 'schedule/' + $scope.pair_schedule,
+			headers: new Headers({
+    			'Content-Type': 'application/json'
+  			})
+		}).then(function mySuccess(response){
+				$scope.curTable = 'schedule_detail_table';
+				$scope.schedule_detail = response.data;
+			},function myError(response){
+				alert(response.data.msg);
+			});
 	}
 
 });
@@ -65,34 +78,7 @@ app.controller('myCon', function($scope, $http){
 
 
 
-//add to list function 5
-function addtoList()
-{
-	let subject = document.getElementById("pairSubjectInputText").value;
-	let course  = document.getElementById("pairCatalogInputText").value;
-	pairs.pairs.push({subject:subject,catalog_nbr:course});
-	alert("added to list successfully");
-}
 
-//fetch function 5
-function addtoSchedule()
-{
-	let schedule = document.getElementById('pairScheduleInputText').value;
-	let sendData = pairs;
-	fetch(publicURL + 'schedule/' + schedule, {
-		method: 'POST',
-		body: JSON.stringify(sendData),
-		headers: new Headers({
-    	'Content-Type': 'application/json'
-  		})
-	}).then((res) => res.json())
-	.then(function(data){
-		if (data.msg) alert(data.msg);
-		else showSchedule(data);
-		pairs = [];
-	})
-	.catch(error => console.log('error'));
-}
 
 //fetch function 6
 function getSchedule()

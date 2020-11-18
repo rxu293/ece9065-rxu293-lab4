@@ -61,12 +61,17 @@ router.get('/courses/:subject', (req, res) =>{
 router.get('/courses/:subject/:catalog_nbr', (req, res) =>{
 	let subjectcode = req.params.subject;
 	let catacode = req.params.catalog_nbr;
-	if (Number(catacode)) catacode = Number(catacode);
 	let courses = [];
 	let time = [];
-	courses = db.get("courses").filter({subject : subjectcode}).
-	filter({catalog_nbr : catacode}).map("course_info").value();
-	console.log(courses);
+	if (catacode != 'any')
+	{
+		if (Number(catacode)) catacode = Number(catacode);
+		courses = db.get("courses").filter({subject : subjectcode}).
+		filter({catalog_nbr : catacode}).map("course_info").value();
+	}
+	else
+		courses = db.get("courses").filter({subject : subjectcode}).
+		map("course_info").value();
 	if (courses.length > 0)
         res.send(getTimes(courses));
     else{

@@ -91,7 +91,7 @@ app.controller('myCon', function($scope, $http){
 	}
 
 	$scope.getAllSchedules = function(){
-		$http.get(publicURL + 'schedule/').then(function mySuccess(response){
+		$http.get(publicURL + 'schedule').then(function mySuccess(response){
 			$scope.curTable = 'schedule_count_table';
 			$scope.schedule_counts = response.data;
 		},function myError(response){
@@ -99,63 +99,12 @@ app.controller('myCon', function($scope, $http){
 		});
 	}
 
-});	
-
-//fetch function 8
-function getSchedules()
-{
-	fetch(publicURL+ 'schedule')
-	.then((res) => res.json())
-	.then(function(data){
-		showSchedules(data);
-	})
-	.catch(error => alert('error'));
-}
-
-//function 8
-function showSchedules(data)
-{
-	let table = document.getElementById('course_table');
-	table.innerHTML = '';
-
-	//for creating header of the table
-	let courses = data;
-	let tr = document.createElement('tr'),
-		th1 = document.createElement('th'),
-		th2 = document.createElement('th');
-	let th1text = document.createTextNode("Schedule name");
-	let th2text = document.createTextNode("Number of courses in the schedule");
-	th1.appendChild(th1text);
-	th2.appendChild(th2text);
-	tr.appendChild(th1);
-	tr.appendChild(th2);
-	table.appendChild(tr);
-
-	//for generating content of the table
-	for (i = 0; i < courses.length; i ++)
-	{
-		tr = document.createElement('tr');
-		th1 = document.createElement('th');
-		th2 = document.createElement('th');
-		let th1text = document.createTextNode(courses[i][0]);
-		let th2text = document.createTextNode(courses[i][1]);
-		th1.appendChild(th1text);
-		th2.appendChild(th2text);
-		tr.appendChild(th1);
-		tr.appendChild(th2);
-		table.appendChild(tr);
+	$scope.deleteAllSchedules = function(){
+		$http.delete(publicURL + 'schedule').then(function mySuccess(response){
+			alert(response.data.msg);
+		},function myError(response){
+			alert(response.data.msg);
+		});
 	}
-}
 
-//fetch function 9
-function deleteAllSchedules()
-{
-	fetch(publicURL + '/schedule', {
-		method: 'DELETE',
-	})
-	.then((res) => res.json())
-	.then(function(data){
-		alert(data.msg);
-	})
-	.catch(error => console.log('error'));
-}
+});	

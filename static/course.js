@@ -73,13 +73,16 @@ app.controller('myCon', function($scope, $http){
 			});
 	}
 
-});
+	$scope.showSchedule = function(){
+		$http.get(publicURL + 'schedule/' + $scope.inputschedule).then(function mySuccess(response){
+			$scope.curTable = 'schedule_detail_table';
+			$scope.schedule_detail = response.data;
+		},function myError(response){
+			alert(response.data.msg);
+		});
+	}
 
-
-
-
-
-
+});	
 //fetch function 6
 function getSchedule()
 {

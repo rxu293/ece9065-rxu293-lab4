@@ -51,7 +51,13 @@ app.controller('myCon', function($scope, $http){
 	}
 
 	$scope.addtoList = function(){
-		
+		pairs.pairs.push({subject: $scope.inputsubject, catalog_nbr:course, 
+			start_time: $scope.start_time, end_time: $scope.end_time});
+		alert("added to list successfully");
+	}
+
+	$scope.addtoSchedule = function(){
+
 	}
 
 });

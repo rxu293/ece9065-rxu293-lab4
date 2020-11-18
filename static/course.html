@@ -97,7 +97,16 @@
 		</tr>
 	</table>
 
-
+	<table id = "schedule_count_table" ng-show = "curTable == 'schedule_count_table'">
+		<tr>
+			<th>Schedule</th>
+			<th>Count</th>
+		</tr>
+		<tr ng-repeat = "x in schedule_counts">
+			<td> {{x.schedule}}</td>
+			<td> {{x.count}}</td>
+		</tr>
+	</table>
 </div>
 
 

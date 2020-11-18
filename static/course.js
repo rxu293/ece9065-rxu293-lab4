@@ -90,22 +90,16 @@ app.controller('myCon', function($scope, $http){
 		});
 	}
 
+	$scope.getAllSchedules = function(){
+		$http.get(publicURL + 'schedule/').then(function mySuccess(response){
+			$scope.curTable = 'schedule_count_table';
+			$scope.schedule_counts = response.data;
+		},function myError(response){
+			alert(response.data.msg);
+		});
+	}
+
 });	
-
-
-//fetch function 7
-function deleteSchedule()
-{
-	let schedule = document.getElementById('addScheduleInputText').value;
-	fetch(publicURL + 'schedule/' + schedule, {
-		method: 'DELETE',
-	})
-	.then((res) => res.json())
-	.then(function(data){
-		alert(data.msg);
-	})
-	.catch(error => console.log('error'));
-}
 
 //fetch function 8
 function getSchedules()

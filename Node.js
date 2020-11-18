@@ -195,7 +195,7 @@ router.get('/schedule', (req, res) =>{
 	let ret = []
 	for (i = 0; i < keys.length; ++i)
 	{
-		ret.push([keys[i],(sche_db.get(keys[i]).value().length == null) ? 0 : sche_db.get(keys[i]).value().length]);
+		ret.push({schedule:keys[i],count:(sche_db.get(keys[i]).value().length == null) ? 0 : sche_db.get(keys[i]).value().length});
 	}
 	res.send(ret);
 });

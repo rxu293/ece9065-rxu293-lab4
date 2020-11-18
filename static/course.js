@@ -82,59 +82,16 @@ app.controller('myCon', function($scope, $http){
 		});
 	}
 
-});	
-//fetch function 6
-function getSchedule()
-{
-	let schedule = document.getElementById('addScheduleInputText').value;
-	fetch(publicURL+ 'schedule/' + schedule)
-	.then((res) => res.json())
-	.then(function(data){
-		if (!data.msg)
-		{
-			showSchedule(data);
-		}
-		else
-		{
-			alert(data.msg);
-		}
-	})
-	.catch(error => alert('no code found for this subject'));
-}
-//function 5 and 6
-function showSchedule(data)
-{
-	let table = document.getElementById('course_table');
-	table.innerHTML = '';
-
-	//for creating header of the table
-	let courses = data;
-	let tr = document.createElement('tr'),
-		th1 = document.createElement('th'),
-		th2 = document.createElement('th');
-	let th1text = document.createTextNode("Subject Code");
-	let th2text = document.createTextNode("Course Code");
-	th1.appendChild(th1text);
-	th2.appendChild(th2text);
-	tr.appendChild(th1);
-	tr.appendChild(th2);
-	table.appendChild(tr);
-
-	//for generating content of the table
-	for (i = 0; i < courses.length; i ++)
-	{
-		tr = document.createElement('tr');
-		th1 = document.createElement('th');
-		th2 = document.createElement('th');
-		let th1text = document.createTextNode(courses[i].subject);
-		let th2text = document.createTextNode(courses[i].catalog_nbr);
-		th1.appendChild(th1text);
-		th2.appendChild(th2text);
-		tr.appendChild(th1);
-		tr.appendChild(th2);
-		table.appendChild(tr);
+	$scope.deleteSchedule = function(){
+		$http.delete(publicURL + 'schedule/' + $scope.inputschedule).then(function mySuccess(response){
+			alert(response.data.msg);
+		},function myError(response){
+			alert(response.data.msg);
+		});
 	}
-}
+
+});	
+
 
 //fetch function 7
 function deleteSchedule()
